@@ -1,0 +1,56 @@
+<div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+    <div class="wrapper wrapper--w680">
+      <div class="card card-4">
+        <div class="card-body">
+          <h2 class="title">Registration Form</h2>
+          <form #registerForm="ngForm" (ngSubmit)="register()">
+            
+              <div class="col-6">
+                <div class="input-group">
+                  <label class="label" for="name">Name</label>
+                  <input class="input--style-4" type="text" [(ngModel)]="user.name" pattern="[a-zA-Z]+$" required  #name="ngModel" name="name">
+                  <span  class="size" *ngIf="name.invalid && name.touched" style="color:red">Name should be contains only characters.</span>
+  
+                </div>
+              </div>
+              
+            
+              <div class="col-6">
+                <div class="input-group">
+                  <label class="label">Email</label>
+                  <input class="input--style-4" type="email" required email #gmail="ngModel" [(ngModel)]="user.gmail" name="gmail">
+                  <span *ngIf="gmail.invalid && gmail.touched" style="color:red">invalid</span>
+  
+                </div>
+              </div>
+            
+                <div class="col-6">
+                  <div class="input-group">
+                    <label class="label">Password</label>
+                    <input class="input--style-4" type="password"    required  minlength="8"   #password="ngModel"[(ngModel)]="user.password"name="password">
+                    <span  class="size" *ngIf="password.invalid && password.touched" style="color:red">password  contain atleast  8 characters</span>
+  
+                  </div>
+                </div>
+                
+              <div class="col-6">
+                <div class="input-group">
+                  <label class="label">Phone Number</label>
+                  <input class="input--style-4" type="tel"  pattern="[0-9]{10}" required #pnumber="ngModel" [(ngModel)]="user.pnumber" name="pnumber">
+                  <span  class="size" *ngIf="pnumber.invalid && pnumber.touched" style="color:red">phone number   must  be cointain 10 numbers</span>
+  
+                </div>
+              </div>
+          
+  
+            <div class="p-t-15">
+              <button class="btn btn--radius-2 btn--blue"  [disabled]="registerForm.invalid"  type=submit>Submit</button>
+             <br/><br/>
+              <button class="btn btn--radius-2 btn--red"    (click)="cancel()">cancel</button>
+  
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,120 @@
+<nav class="navbar" style="background-color:hotpink;">
+    <div class="container-fluid">
+        <h2 style="color: royalblue;"><b>Manage Bikes</b></h2>
+        <form class="row">
+          <div class="col-12">
+            <input class="form-control" type="text" placeholder="Search" name="searchfield" [(ngModel)]="searchfield" >
+        </div>
+        </form>
+        <div class="d-flex">
+            <button  class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addbike" (click)="clickAddbikes()">Add Bike</button>
+        </div>
+    </div>
+    
+</nav>
+
+<!--Table Creation-->
+    
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th scope="col" (click)="sort('id')">Id&nbsp;<i class="fa fa-sort"></i></th>
+            <th scope="col">Bike Company</th>
+            <th scope="col">Bike Number</th>
+            <th scope="col">Bike Variant</th>
+            <th scope="col">Model year</th>
+            <th scope="col" (click)="sort('price')">Bike price&nbsp;<i class="fa fa-sort"></i></th>
+            <th scope="col">Status</th>
+            <th scope="col">Created On</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of table | orderBy:key:reverse | paginate:{itemsPerPage:5,currentPage:p} | searchbike:searchfield">
+           <th>{{row.id}}</th>
+           <td>{{row.bikename}}</td>
+           <td>{{row.bikenum}}</td>
+           <td>{{row.bikevar}}</td>
+           <td>{{row.modelyear}}</td>
+           <td>{{row.price}}</td>
+           <td>{{row.status}}</td>
+           <td>{{row.createdon}}</td> 
+           <td>
+            <button  class="btn btn-outline-primary me-2" type="button" data-bs-toggle="modal" data-bs-target="#addbike" (click)="onEdit(row)" >Edit</button>
+            <button class="btn btn-outline-danger" (click)="deletebikedeatils(row)" >Delete</button>
+           </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p =$event"></pagination-controls>
+<div class="row mt-3">
+  <div class="col">
+      <a class="btn btn-danger" routerLink="/dashboard">Back</a>
+  </div>
+</div>
+    
+<!-- Add Bike modal -->
+
+  <div class="modal fade" id="addbike" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Bike Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  <form class="row g-3" [formGroup]="bikedetails" >
+    <div class="col-md-6">
+      <label for="inputid" class="form-label">Id</label>
+      <input type="number" formControlName="id" class="form-control" id="inputid">
+      <span class="form-text text-danger" *ngIf="id && id.invalid && id.touched ">Id required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputbikename" class="form-label">Bike Company</label>
+      <input type="text" formControlName="bikename" class="form-control" id="inputbikename">
+      <span class="form-text text-danger" *ngIf="bikename && bikename.invalid && bikename.touched ">Bike company required</span>
+    
+    </div>
+    <div class="col-6">
+      <label for="inputbikenum" class="form-label">Bike Number</label>
+      <input type="text" formControlName="bikenum" class="form-control" id="inputbikenum" >
+      <span class="form-text text-danger" *ngIf="bikenum && bikenum.invalid && bikenum.touched ">Bike number is required</span>
+    </div>
+    <div class="col-6">
+      <label for="inputbikevar" class="form-label">Bike Variant</label>
+      <input type="text" formControlName="bikevar" class="form-control" id="inputbikevar" >
+      <span class="form-text text-danger" *ngIf="bikevar && bikevar.invalid && bikevar.touched ">Bike variant required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputyear" class="form-label">Model year</label>
+      <input type="number" formControlName="modelyear" class="form-control" id="inputyear">
+      <span class="form-text text-danger" *ngIf="modelyear && modelyear.invalid && modelyear.touched ">Model year required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputprice" class="form-label">Bike price</label>
+      <input type="number" formControlName="price" class="form-control" id="inputprice">
+      <span class="form-text text-danger" *ngIf="price && price.invalid && price.touched ">Price required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputStatus" class="form-label">Status</label>
+      <select type="text" formControlName="status" id="inputStatus" class="form-select">
+        <option value="Available">Available</option>
+        <option value="Not Available">Not Available</option>
+      </select>
+      <span class="form-text text-danger" *ngIf="status && status.invalid && status.touched ">Status required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputon" class="form-label">Created On</label>
+      <input type="date" formControlName="createdon" class="form-control" id="inputon">
+      <span class="form-text text-danger" *ngIf="createdon && createdon.invalid && createdon.touched ">Date required</span>
+    </div>
+    <div class="modal-footer">
+      <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button type="button" [disabled]="bikedetails.invalid" *ngIf="showAdd" class="btn btn-primary" (click)="postbikeDetails()">Add</button>
+      <button type="button"  *ngIf="showUpdate" class="btn btn-success" (click)="updateBikeDetails()">Update</button>
+    </div>
+  </form>
+</div>    
+</div>
+</div>
+</div>

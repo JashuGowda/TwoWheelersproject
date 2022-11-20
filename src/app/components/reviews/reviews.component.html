@@ -1,0 +1,123 @@
+<body>
+    <nav class="navbar" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <h2 style="color:blueviolet;"><b>Customer Reviews</b></h2>
+            
+        </div>
+    </nav>
+
+<div>
+
+  <form class="form" [formGroup]="reviewform">
+
+    <hr>
+    <div class="form-group row">
+
+        <label for="id" class="col-sm-2 col-form-label"><b>Order Id:</b></label>
+  
+        <div class="col-sm-4">
+  
+          <input id="id" formControlName="id" name="id" required="required" class="form-control">
+  
+        </div>
+  
+      </div>  
+      <br>
+
+    <div class="form-group row">
+
+      <label for="name" class="col-sm-2 col-form-label"><b>Name:</b></label>
+
+      <div class="col-sm-4">
+
+        <input id="name" formControlName="name" name="name" required="required" class="form-control">
+
+      </div>
+
+    </div>  
+    <br> 
+    <div class="form-group row">
+
+      <label for="name" class="col-sm-2 col-form-label"><b>Bike Company:</b></label>
+
+      <div class="col-sm-4">
+
+        <input id="name" formControlName="bikeName" name="bikeName" required="required" class="form-control">
+        <span class="form-text text-danger" *ngIf="bikeName && bikeName.invalid && bikeName.touched ">Bike Name required*</span>
+      </div>
+      
+
+    </div>  
+    
+    <br>
+    <div class="form-group row">
+
+      <label for="name" class="col-sm-2 col-form-label"><b>Bike Number:</b></label>
+
+      <div class="col-sm-4">
+
+        <input id="name" formControlName="bikeNum" name="bikeNum" required="required" class="form-control">
+        <span class="form-text text-danger" *ngIf="bikeNum && bikeNum.invalid && bikeNum.touched ">Bike Number required*</span>
+      </div>
+
+    </div>  
+    
+    <br>
+    <div class="form-group row">
+
+        <label for="rating" class="col-sm-2 col-form-label"><b>Rating</b></label>
+  
+        <div class="col-sm-10 col-md-2">
+  
+            <select type="text" formControlName="ratings" id="inputState" class="form-select">
+  
+            <option value="5">5</option>
+  
+            <option value="4">4</option>
+  
+            <option value="3">3</option>
+  
+            <option value="2">2</option>
+  
+            <option value="1">1</option>
+  
+          </select>
+  
+        </div>   
+  
+  </div>
+  <br>
+  
+      <div class="form-group row">
+  
+        <label for="review" class="col-sm-2 col-form-label"><b>Review:</b></label>
+  
+        <div class="col-sm-4">
+  
+          <textarea name="review" formControlName="reviews" id="reviews" rows="5" class="form-control"></textarea>
+          <span class="form-text text-danger" *ngIf="reviews && reviews.invalid && reviews.touched ">Reviews required*</span>
+        </div>
+  
+      </div> 
+      
+      <br>
+      <div class="form-group row">
+
+        <div class="col-12">
+  
+          <button type="submit" [disabled]="reviewform.invalid" class="btn btn-primary float-right" style="margin-left:15px" (click)="addreviews()">Submit review</button>&nbsp;
+  
+          <button type="button" class="btn btn-danger" [routerLink]="['/userdashboard']">Cancel</button>
+  
+        </div>
+  
+      </div>
+  
+      <hr>
+  
+    </form>
+  
+  </div>
+</body>
+
+

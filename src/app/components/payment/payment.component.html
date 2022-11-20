@@ -1,0 +1,134 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="stylesheet" href="payment.component.css" />
+    </head>
+    <body>
+      <div
+        *ngIf=""
+        class="alert alert-success alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>Success !</strong> You have Registered...
+        <button
+          onclick="CloseAlert()"
+          type="button"
+          class="close"
+          data-dismiss="alert"
+          aria-label="Close"
+        >
+        <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+        <div class="container">
+        <div class="title">Payment</div>
+        <div class="content">
+            <br>
+          <form [formGroup]="registrationForm" >
+            <div class="Payment options">
+                <span class="details">Payment method</span>
+                 <select formControlName="paymentmethod" class="form-select form-select-sm mb-2" aria-label=".form-select-sm example">
+                     <option selected>Payment options</option>
+                     <option value="Debitcard">Debit card</option>
+                     <option value="Creditcard">Credit card</option>
+                   </select>
+                   <span class="form-text text-danger" *ngIf="paymentmethod && paymentmethod.invalid && paymentmethod.touched ">Id required</span>
+             </div>
+            
+            <div class="user-details">
+              <div class="input-box">
+                <span class="details">Name on Card</span>
+                <input
+                  type="text"
+                  placeholder="Enter Name on the card"
+                  id="firstName"
+                  formControlName="nameoncard"
+                />    
+                <span class="form-text text-danger" *ngIf="nameoncard && nameoncard.invalid && nameoncard.touched ">Name required</span>          
+                <br />
+                
+              </div>
+              <div class="input-box">
+                <span class="details">Card Number</span>
+                <input
+                  type="text"
+                  placeholder="Enter Card Number"
+                  id="lastName"
+                  formControlName="cardno"
+                />
+                <span class="form-text text-danger" *ngIf="cardno && cardno.invalid && cardno.touched ">Card Number required</span>
+                <br />
+              </div>
+             
+              <div class="input-box">
+                <span class="details">Ex-Month</span>
+                <input
+                  type="text"
+                  placeholder="Ex-Month"
+                  id="email"
+                  formControlName="exmonth"
+                />
+                <span class="form-text text-danger" *ngIf="exmonth && exmonth.invalid && exmonth.touched ">Exmonth required</span>
+                <br />
+              </div>
+              <div class="input-box">
+                <span class="details">Ex-year</span>
+                <input
+                  type="text"
+                  placeholder="Ex-Year"
+                  id="password"
+                  formControlName="exyear"/>
+                  <span class="form-text text-danger" *ngIf="exyear && exyear.invalid && exyear.touched ">Exmonth required</span>
+                <br />
+              </div>
+              <div class="input-box">
+                <span class="details">CVV </span>
+
+                <input
+                  type="password"
+                  placeholder="Cvv"
+                  id="address"
+                  formControlName="cvv"
+                />
+                <span class="form-text text-danger" *ngIf="cvv && cvv.invalid && cvv.touched ">CVV required</span>
+                <br />
+              </div>
+              <div class="input-box">
+                <span class="details">Amount</span>
+                <input
+                  type="text"
+                  placeholder="Enter Amount"
+                  id="lastName"
+                  formControlName="amount"
+                />
+                <span class="form-text text-danger" *ngIf="amount && amount.invalid && amount.touched ">Id required</span>
+                </div>
+                </div>
+            <br>
+          
+          <div class="input-box">
+            <span class="details">Payment Date</span>
+            <input
+              type="date"
+              id="lastName"
+              formControlName="pmtdate"
+            />
+            <span class="form-text text-danger" *ngIf="pmtdate && pmtdate.invalid && pmtdate.touched ">Id required</span>
+            </div>
+           <div class="button"> 
+       
+        <button style="background: linear-gradient(-135deg, #71b7e6, #9b59b6); " (click)="makepayment()"  type="button" class="makepayment">
+                Make Payment
+              </button> 
+     
+              <button style="background: linear-gradient(-135deg, #71b7e6, #9b59b6); " [routerLink]="['/bookbike']" onclick="history.back()" class="btn btn-primary">Go Back</button>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+    </body>
+  </html> 

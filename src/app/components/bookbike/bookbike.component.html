@@ -1,0 +1,117 @@
+<nav class="navbar" style="background-color:blueviolet;">
+    <div class="container-fluid">
+        <h2 style="color: black;"><b>Bike Booking</b></h2>
+        <form class="row">
+          <div class="col-12">
+            <input class="form-control" type="text" placeholder="Search" name="searchfield" [(ngModel)]="searchfield" >
+        </div>
+        </form>
+    </div>
+    
+</nav>
+
+<!--Table Creation-->
+    
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th scope="col" (click)="sort('id')">Id&nbsp;<i class="fa fa-sort"></i></th>
+            <th scope="col">Bike Company</th>
+            <th scope="col">Bike Number</th>
+            <th scope="col">Bike Variant</th>
+             <th scope="col">Model year</th>
+            <th scope="col" (click)="sort('price')">Bike price&nbsp;<i class="fa fa-sort"></i></th>
+            <th scope="col">Status</th>
+            
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let row of table | orderBy:key:reverse | paginate:{itemsPerPage:5,currentPage:p} | searchbike:searchfield">
+           <th>{{row.id}}</th>
+           <td>{{row.bikename}}</td>
+           <td>{{row.bikenum}}</td>
+           <td>{{row.bikevar}}</td>
+           <td>{{row.modelyear}}</td>
+           <td>{{row.price}}</td>
+           <td>{{row.status}}</td>
+           
+           <td>
+            <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#bookbike">Book</button>
+           </td>
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p =$event"></pagination-controls>
+<div class="row mt-3">
+  <div class="col">
+      <a class="btn btn-danger" routerLink="/userdashboard">Back</a>
+  </div>
+</div>
+
+<div class="modal fade" id="bookbike" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Booking details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  <form class="row g-3" [formGroup]="registredForm" >
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Id</label>
+      <input type="number" formControlName="id" class="form-control" id="inputEmail4">
+      <span class="form-text text-danger" *ngIf="id && id.invalid && id.touched ">Id required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">Bike Company</label>
+      <input type="text" formControlName="bikename" class="form-control" id="inputPassword4">
+      <span class="form-text text-danger" *ngIf="bikename && bikename.invalid && bikename.touched ">Bike company required</span>
+    </div>
+    <div class="col-6">
+      <label for="inputAddress" class="form-label">Bike Number</label>
+      <input type="text" formControlName="bikenum" class="form-control" id="inputAddress" >
+      <span class="form-text text-danger" *ngIf="bikenum && bikenum.invalid && bikenum.touched ">Bike number is required</span>
+    </div>
+    <div class="col-6">
+      <label for="inputAddress2" class="form-label">From Date</label>
+      <input type="text" formControlName="fromdate" class="form-control" id="inputAddress2" >
+      <span class="form-text text-danger" *ngIf="fromdate && fromdate.invalid && fromdate.touched ">Date required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">To Date</label>
+      <input type="text" formControlName="todate" class="form-control" id="inputCity">
+      <span class="form-text text-danger" *ngIf="todate && todate.invalid && todate.touched ">Date required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputZip" class="form-label">UserName</label>
+      <input type="text" formControlName="uname" class="form-control" id="inputZip">
+      <span class="form-text text-danger" *ngIf="uname && uname.invalid && uname.touched ">Username required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputState" class="form-label">Gender</label>
+      <select type="text" formControlName="gender" id="inputState" class="form-select">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <span class="form-text text-danger" *ngIf="gender && gender.invalid && gender.touched ">Gender required</span>
+    </div>
+    <div class="col-md-6">
+      <label for="inputZip" class="form-label">Phone</label>
+      <input type="text" formControlName="phone" class="form-control" id="inputZip">
+      <span class="form-text text-danger" *ngIf="phone && phone.invalid && phone.touched ">Date required</span>
+    </div>
+    <div class="col-md-6">
+        <label for="inputZip" class="form-label">Advance Amount</label>
+        <input type="number" formControlName="advanceamount" class="form-control" id="inputZip">
+        <span class="form-text text-danger" *ngIf="advanceamount && advanceamount.invalid && advanceamount.touched ">Date required</span>
+      </div>
+    <div class="modal-footer">
+      <button type="button" id="cancel" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button class="btn btn-success" [disabled]="registredForm.invalid" (click)="postbookDetails()" type="submit">Save</button>
+    </div>
+  </form>
+</div>    
+</div>
+</div>
+</div>

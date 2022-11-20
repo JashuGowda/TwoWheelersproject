@@ -1,0 +1,49 @@
+<nav class="navbar" style="background-color: darkorange;">
+    <div class="container-fluid">
+        <h2 style="color: darkblue;"><b>Booking Details</b></h2>
+        <form class="d-flex">
+            <div class="col-15">
+            <input class="form-control" type="text" placeholder="Search" name="searchvalue" [(ngModel)]="searchvalue" >
+          </div>
+          </form>
+    </div>
+</nav>
+
+<!--Table Creation-->
+    
+<table class="table table-bordered mt-3">
+    <thead>
+        <tr>
+            <th scope="col" (click)="sort('id')">Id&nbsp;<i class="fa fa-sort"></i></th>
+            <th scope="col">Bike Company</th>
+            <th scope="col">Bike Number</th>
+            <th scope="col" (click)="sort('fromdate')">From Date&nbsp;<i class="fa fa-sort"></i></th>
+             <th scope="col" (click)="sort('todate')">To Date&nbsp;<i class="fa fa-sort"></i></th>
+            <th scope="col">User Name</th>
+            <th scope="col">Gender</th>
+            <th scope="col" >Phone Number</th>
+            <th scope="col">Advance Amount</th>
+          
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let book of bookings|orderBy:key:reverse | paginate:{itemsPerPage:5,currentPage:p} |searchfilter:searchvalue">
+           <th>{{book.id}}</th>
+           <td>{{book.bikename}}</td>
+           <td>{{book.bikenum}}</td>
+           <td>{{book.fromdate}}</td>
+           <td>{{book.todate}}</td>
+           <td>{{book.uname}}</td>
+           <td>{{book.gender}}</td> 
+           <td>{{book.phone}}</td> 
+           <td>{{book.advanceamount}}</td>
+
+        </tr>
+    </tbody>
+</table>
+<pagination-controls (pageChange)="p =$event"></pagination-controls>
+<div class="row mt-3">
+    <div class="col">
+        <a class="btn btn-danger" routerLink="/dashboard">Back</a>
+    </div>
+  </div>

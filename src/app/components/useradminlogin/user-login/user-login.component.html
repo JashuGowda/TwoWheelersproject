@@ -1,0 +1,21 @@
+<div class="img">
+    <div class="login-page">
+        <h2>Login</h2>
+        <div class="form">
+         
+          <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)">
+            <div>
+              
+              <input type="text"  [(ngModel)]="user.gmail" name="gmail" placeholder="Email" />
+            </div>
+           <div>
+            <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password" />
+          </div>
+            <button type=submit>login</button>
+            <p class="message">Not registered? <a [routerLink]="['/register']" >Create an account</a></p>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+    

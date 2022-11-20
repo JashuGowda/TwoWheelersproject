@@ -1,0 +1,27 @@
+
+<div class="img">
+  
+    <div class="login-page">
+        <h2>Admin Login</h2>
+        <div class="in">
+        <div class="form">
+    
+         
+          <form #adminLogin="ngForm" (ngSubmit)="adminlog(adminLogin.value)">
+            <div>
+              
+              <input type="text"  [(ngModel)]="admin.adminId" name="gmail" placeholder="username" />
+            </div>
+           <div>
+            <input type="password" [(ngModel)]="admin.password" name="password" placeholder="password" />
+          </div>
+            <button (click)="adminlog(admin)">login</button>
+          </form>
+        </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
