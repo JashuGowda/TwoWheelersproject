@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup,FormBuilder,FormControl, Validators } from '@angular/forms';
 import { ServiceService } from 'src/app/services/service.service';
 import { Bike } from 'src/app/components/bikes/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-bikes',
@@ -77,7 +78,7 @@ export class BikesComponent implements OnInit {
 
    this.apiService.addbike(this.bike).subscribe(
     data=>{this.bike=data;
-      alert("Bike Add successfully") 
+      Swal.fire("Hello Admin",'Bike Added Successfully!','success')
       let ref=document.getElementById('cancel')
       ref?.click();
       this.bikedetails.reset();
@@ -101,8 +102,9 @@ export class BikesComponent implements OnInit {
       }
 
       deletebikedeatils(row:any){
+        if(confirm('You want to Delete this Bike?'))
         this.apiService.deletebike(row.id).subscribe(data=>{
-          alert("You want to Delete this Bike?");
+          alert("Bike Deleted Successfully!");
           this.bikedetails.reset();
           this.getbikeDetails(); 
       })
@@ -135,7 +137,7 @@ export class BikesComponent implements OnInit {
 
       this.apiService.updatebike(this.bike).subscribe(
         data=>{this.bike=data;
-          alert("Bike Updated successfully") 
+          Swal.fire("Hello Admin",'Bike Updated Successfully!','success')
           let ref=document.getElementById('cancel')
           ref?.click();
           this.bikedetails.reset();

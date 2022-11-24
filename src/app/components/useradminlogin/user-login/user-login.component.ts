@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminserviceService } from 'src/app/services/adminservice.service';
+import Swal from 'sweetalert2';
 import { Users } from '../../../tables/user';
 
 
@@ -19,6 +20,7 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(user:Users): void{
+    Swal.fire("User",'Login Successful','success')
     this.ser.login(this.user).subscribe((data)=>{
       this.r.navigate(['/userdashboard']);
      },

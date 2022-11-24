@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminserviceService } from 'src/app/services/adminservice.service';
+import Swal from 'sweetalert2';
 import { Admin } from './admin';
 
 @Component({
@@ -15,7 +16,8 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {
   }
   adminlog(admin:Admin): void{
-    this.ser.AdminLogin(this.admin).subscribe((data)=>{
+    Swal.fire("Admin",'Login Successful','success')
+    this.ser.AdminLogin(this.admin).subscribe((data)=>{ 
       this.r.navigate(['/dashboard']);
       console.log("success");
      },

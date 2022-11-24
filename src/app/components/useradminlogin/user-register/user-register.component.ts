@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminserviceService } from 'src/app/services/adminservice.service';
+import Swal from 'sweetalert2';
 import { Users } from '../../../tables/user';
 
 @Component({
@@ -16,7 +17,7 @@ export class UserRegisterComponent implements OnInit {
   }
   register(){
     this.ser.Save(this.user).subscribe((data)=>{
-      alert("successfully registered");
+      Swal.fire("User",'User Registered Successfully!','success')
       this.r.navigate(['/login']);
     },
     error=>{

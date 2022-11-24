@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PaymentService } from 'src/app/services/payment.service';
+import Swal from 'sweetalert2';
 import { Payment } from './payment';
 
 @Component({
@@ -80,11 +81,12 @@ export class PaymentComponent implements OnInit {
     this.as.addpayment(this.pay).subscribe(
        data=>{
         this.pay=data;
-        alert("Payment Added Successfully")
+        Swal.fire("Thank You for Booking!",'Your Payment Successful','success')
        this.registrationForm.reset(); }
        ,error=>{console.log(error)
         alert("Something wrong!!")
         this.pay=new Payment();});
       }
+     
 
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Reviews } from './review';
 import { FormGroup,FormBuilder,FormControl, Validators } from '@angular/forms';
 import { ReviewsService } from 'src/app/services/reviews.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reviews',
@@ -46,7 +47,7 @@ export class ReviewsComponent implements OnInit {
 
     this.rs.addreviews(this.review).subscribe(
       data=>{this.review=data;
-        alert("Thank you for your valid feedback!") 
+        Swal.fire("Hello..!",'Thank You for your valuable Feedback.','success')
         let ref=document.getElementById('cancel')
         ref?.click();
         this.reviewform.reset(); }

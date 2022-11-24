@@ -18,10 +18,11 @@ export class FeedbackComponent implements OnInit {
     this.getallfeedback();
   }
   deletereview(row:any){
+    if(confirm('You want to Delete this feedback?'))
       this.fs.deletefeedback(row.id)
       .subscribe(data=>{
         this.ftable=data;
-        alert("You want to Delete this feedback?");
+        alert("Feedback Deleted Successfully!");
         this.getallfeedback(); 
     })
 
