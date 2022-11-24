@@ -17,7 +17,7 @@ export class UserRegisterComponent implements OnInit {
   }
   register(){
     this.ser.Save(this.user).subscribe((data)=>{
-      Swal.fire("User",'User Registered Successfully!','success')
+      Swal.fire("User",'User Registered Successfully!!','success')
       this.r.navigate(['/login']);
     },
     error=>{
