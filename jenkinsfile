@@ -1,0 +1,14 @@
+node{
+    stage('Checkout SCH'){
+        git branch: 'jenkins_test', url: 'github.com/JashuGowda/TwoWheelersproject.git'
+    }
+    stage('Install node modules'){
+        sh "npm install"
+    }
+    stage("Build"){
+        sh "npm run build --prod"
+    }
+    stage("Test"){
+        sh "npm run test-headless"
+    }
+}
