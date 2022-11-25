@@ -19,7 +19,6 @@ export class AdminLoginComponent implements OnInit {
     Swal.fire("Admin",'Login Successful','success')
     this.ser.AdminLogin(this.admin).subscribe((data)=>{ 
       this.r.navigate(['/dashboard']);
-      console.log("success");
      },
     error=>{
       console.log(error);

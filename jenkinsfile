@@ -11,4 +11,9 @@ node{
     stage("Test"){
         sh "npm run test-headless"
     }
+   stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
 }
