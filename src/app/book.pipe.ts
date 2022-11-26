@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Bike } from './components/bikes/table';
-import { Bookbike } from './components/bookbike/bookbike';
 
 @Pipe({
   name: 'book'
