@@ -75,12 +75,12 @@
     </div>
     <div class="col-6">
       <label for="inputAddress2" class="form-label">From Date</label>
-      <input type="text" formControlName="fromdate" class="form-control" id="inputAddress2" >
+      <input type="date" formControlName="fromdate" class="form-control" id="inputAddress2" >
       <span class="form-text text-danger" *ngIf="fromdate && fromdate.invalid && fromdate.touched ">Date required</span>
     </div>
     <div class="col-md-6">
       <label for="inputCity" class="form-label">To Date</label>
-      <input type="text" formControlName="todate" class="form-control" id="inputCity">
+      <input type="date" formControlName="todate" class="form-control" id="inputCity">
       <span class="form-text text-danger" *ngIf="todate && todate.invalid && todate.touched ">Date required</span>
     </div>
     <div class="col-md-6">
