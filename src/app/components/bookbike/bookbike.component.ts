@@ -104,6 +104,12 @@ export class BookbikeComponent implements OnInit {
       }
     )
   }
+  onEdit(row:any){
+    this.book.id=row.id;
+    this.registredForm.controls['id'].setValue(row.id);
+    this.registredForm.controls['bikenum'].setValue(row.bikenum);
+    this.registredForm.controls['bikename'].setValue(row.bikename);
+  }
  
   
 }
