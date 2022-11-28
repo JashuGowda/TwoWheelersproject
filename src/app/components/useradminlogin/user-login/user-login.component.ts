@@ -20,8 +20,8 @@ export class UserLoginComponent implements OnInit {
   ngOnInit(): void {
   }
   login(user:Users): void{
-    Swal.fire("User",'Login Successful','success')
     this.ser.login(this.user).subscribe((data)=>{
+      Swal.fire("User",'Login Successful','success')
       this.r.navigate(['/userdashboard']);
      },
     error=>{

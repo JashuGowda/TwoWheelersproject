@@ -16,8 +16,8 @@ export class AdminLoginComponent implements OnInit {
   ngOnInit(): void {
   }
   adminlog(admin:Admin): void{
-    Swal.fire("Admin",'Login Successful','success')
     this.ser.AdminLogin(this.admin).subscribe((data)=>{ 
+      Swal.fire("Admin",'Login Successful','success')
       this.r.navigate(['/dashboard']);
      },
     error=>{
