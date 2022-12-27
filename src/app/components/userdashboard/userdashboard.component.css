@@ -38,7 +38,7 @@
     display: inline-block;
     padding: 8px;
     color: deeppink;
-    background-color:khaki;
+    background-color:gold;
     text-align: center;
     cursor: pointer;
     width: 100%;
@@ -46,7 +46,7 @@
   }
   
   .button:hover {
-    background-color:cornflowerblue;
+    background-color:cyan;
   }
   .position-relative {
 	position: relative;
@@ -72,7 +72,7 @@ body {
     
 }
 .navbar{
-  background-color:cyan;
+  background-color:darkcyan;
     width: 100%;
     margin: auto;
     padding: 25px 0;
